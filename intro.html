@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: white;
+            font-family: Arial, sans-serif;
+        }
+        
+        .container {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px; /* Spacing between boxes */
+        }
+
+        .countdown div {
+            background-color: #eee;
+            padding: 20px;
+            border-radius: 10px;
+            width: 100px;
+            text-align: center;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .countdown div span {
+            display: block;
+            font-size: 2em;
+            color: #333;
+        }
+
+        .countdown div small {
+            font-size: 0.9em;
+            color: #777;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            p {
+                font-size: 1em;
+            }
+            .countdown div {
+                width: 70px;
+                padding: 15px;
+            }
+            .countdown div span {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="image.JPEG" alt="Coming Soon Image">
+
+        <h1>Our Website is Coming Soon.</h1>
+        <p>We are working to deliver the best experience for our visitors.</p>
+
+        <div class="countdown">
+            <div>
+                <span id="days">0</span>
+                <small>Day</small>
+            </div>
+            <div>
+                <span id="hours">0</span>
+                <small>Hour</small>
+            </div>
+            <div>
+                <span id="minutes">0</span>
+                <small>Minute</small>
+            </div>
+            <div>
+                <span id="seconds">0</span>
+                <small>Second</small>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const countdownDate = new Date("Dec 31, 2024 00:00:00").getTime();
+
+        const countdownFunction = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerHTML = days;
+            document.getElementById("hours").innerHTML = hours;
+            document.getElementById("minutes").innerHTML = minutes;
+            document.getElementById("seconds").innerHTML = seconds;
+
+            if (distance < 0) {
+                clearInterval(countdownFunction);
+                document.getElementById("days").innerHTML = "0";
+                document.getElementById("hours").innerHTML = "0";
+                document.getElementById("minutes").innerHTML = "0";
+                document.getElementById("seconds").innerHTML = "0";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
